@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 class Post(models.Model):
 
     CATEGORY_CHOICES = (
@@ -14,53 +15,55 @@ class Post(models.Model):
     )
 
     LOCATION_choice = (
-   ('MP', 'mapo'),
-   ('GS', 'gangseo'),
-   ('YC', 'yangcheon'),
-   ('GR', 'guro'),
-   ('YDP', 'yeongdeungpo'),
-   ('GC', 'geumcheon'),
-   ('DJ', 'dongjak'),
-   ('GA', 'gwanak'),
-   ('SC', 'seocho'),
-   ('GN', 'gangnam'),
-   ('SP', 'songpa'),
-   ('GD', 'gangdong'),
-   ('SDM', 'seodaemun'),
-   ('GN', 'jongno'),
-   ('EP','eunpyeong'),
-   ('J','jung'),
-   ('YS', 'yongsan'),
-   ('SB', 'seongbuk'),
-   ('GB', 'gangbuk'),
-   ('DB', 'dobong'),
-   ('NW', 'nowon'),
-   ('DDM', 'dongdaemun'),
-   ('SD', 'seongdong'),
-   ('JN', 'jungnang'),
-   ('GJ', 'gwangjin')
+   ('MP', '마포구'),
+   ('GS', '강서구'),
+   ('YC', '양천구'),
+   ('GR', '구로구'),
+   ('YDP', '영등포구'),
+   ('GC', '금천구'),
+   ('DJ', '동작구'),
+   ('GA', '관악구'),
+   ('SC', '서초구'),
+   ('GN', '강남구'),
+   ('SP', '송파구'),
+   ('GD', '강동구'),
+   ('SDM', '서대문구'),
+   ('GN', '종로구'),
+   ('EP','은평구'),
+   ('J','중구'),
+   ('YS', '용산구'),
+   ('SB', '성북구'),
+   ('GB', '강북구'),
+   ('DB', '도봉구'),
+   ('NW', '노원구'),
+   ('DDM', '동대문구'),
+   ('SD', '성동구'),
+   ('JN', '중랑구'),
+   ('GJ', '광진구')
 )
     # Post 제목
     title = models.TextField()
     category = models.CharField(max_length = 50, choices = CATEGORY_CHOICES,default='friend')
+    location = models.CharField(max_length = 50, choices = LOCATION_choice, default='MP')
 
-    user = models.ForeignKey(User,on_Delete = models.CASCADE)
+    user = models.ForeignKey(User,on_delete = models.CASCADE)
     created = models.DateTimeField(auto_now=True)
-    like_users = models.ManyToManyField(User,related_name='check_notices',blank=True)
+    like_users = models.ManyToManyField(User,related_name='check_notices',null=True)
     like_count = models.IntegerField(default=0)
 
 
     title1 = models.TextField()        # 장소 이름 1
     description1 = models.TextField()
-    location1 = models.CharField(max_length = 50, choices = LOCATION_choice)
     image1 = models.ImageField(upload_to='images/',blank=True, null=True)
 
     title2 = models.TextField()
     description2 = models.TextField()
-    location2 = models.CharField(max_length = 50, choices = LOCATION_choice)
     image2 = models.ImageField(upload_to='images/',blank=True, null=True)
 
     title3 = models.TextField()
     description3 = models.TextField()
-    location3 = models.CharField(max_length = 50, choices = LOCATION_choice)
     image3 = models.ImageField(upload_to='images/',blank=True, null=True)
+
+
+    def __str__(self):
+        return "{} - {}".format(self.title, self.category)
