@@ -15,3 +15,49 @@
                 <a href="{% url 'login' %}" >로그인</a>
 
 {% endif %}
+
+{% load static %}
+<form action="{% url 'cg_filter' %}">
+    <select name="category">
+      <option value="special" selected>특별한 날</option>
+      <option value="lover">연인과</option>
+      <option value="company">회식</option>
+      <option value="family">가족과</option>
+      <option value="alone">혼자</option>
+      <option value="activity">액티비티</option>
+      <option value="friend">친구와</option>
+      <option value="healing">힐링</option>
+    </select>
+    <input type="submit">
+</form>
+
+<form action="{% url 'cg_filter' %}">
+    <select name="category">
+      <option value="GN">강남구</option>
+      <option value="GD">강동구</option>
+      <option value="CS">강서구</option>
+      <option value="GB">강북구</option>
+      <option value="GA">관악구</option>
+      <option value="GJ">광진구</option>
+      <option value="GR">구로구</option>
+      <option value="GC">금천구</option>
+      <option value="NW">노원구</option>
+      <option value="DDM">동대문구</option>
+      <option value="DB">도봉구</option>
+      <option value="DJ">동작구</option>
+      <option value="MP" selected>마포구</option>
+      <option value="SDM">서대문구</option>
+      <option value="SD">성동구</option>
+      <option value="SB">성북구</option>
+      <option value="SC">서초구</option>
+      <option value="SP">송파구</option>
+      <option value="YDP">영등포구</option>
+      <option value="YS">용산구</option>
+      <option value="YC">양천구</option>
+      <option value="EP">은평구</option>
+      <option value="GN">종로구</option>
+      <option value="J">중구</option>
+      <option value="JN">중랑구</option>
+    </select>
+    <input type="submit">
+</form>

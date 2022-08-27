@@ -1,0 +1,12 @@
+<form action=" " method="POST" enctype="multipart/form-data">
+    <!--이 방식은 <form> 요소가 파일이나 이미지를 서버로 전송할 때 주로 사용함 위에 enctype-->
+    {%csrf_token%}
+    <!--views.py 에서 render()의 세번째 인자로 넘겨준 딕셔너리형 데이터는 html 내에서 \{\{}}에 갑싸진 채로 표현 가능하다.-->
+    <table>
+        {{form.as_table}}
+        <!--위에 form말고 form.as_table로 쓰면 자동으로 table에 감싸진 것처럼 나온다.-->
+        <!--.as_p로 쓰면 자동으로 <p>에 감싸진 것처럼 나온다.-->
+        <!--.as_ul로 쓰면 자동으로 <ul>에 감싸진 것처럼 나온다.-->
+    </table>
+    <input type="submit" value="새 글 생성하기">
+</form>
