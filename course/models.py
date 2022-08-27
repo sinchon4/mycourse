@@ -43,8 +43,9 @@ class Post(models.Model):
     # Post 제목
     title = models.TextField()
     category = models.CharField(max_length = 50, choices = CATEGORY_CHOICES,default='friend')
+    location = models.CharField(max_length = 50, choices = LOCATION_choice)
 
-    user = models.ForeignKey(User,on_Delete = models.CASCADE)
+    user = models.ForeignKey(User,on_delete = models.CASCADE)
     created = models.DateTimeField(auto_now=True)
     like_users = models.ManyToManyField(User,related_name='check_notices',blank=True)
     like_count = models.IntegerField(default=0)
@@ -52,15 +53,12 @@ class Post(models.Model):
 
     title1 = models.TextField()        # 장소 이름 1
     description1 = models.TextField()
-    location1 = models.CharField(max_length = 50, choices = LOCATION_choice)
     image1 = models.ImageField(upload_to='images/',blank=True, null=True)
 
     title2 = models.TextField()
     description2 = models.TextField()
-    location2 = models.CharField(max_length = 50, choices = LOCATION_choice)
     image2 = models.ImageField(upload_to='images/',blank=True, null=True)
 
     title3 = models.TextField()
     description3 = models.TextField()
-    location3 = models.CharField(max_length = 50, choices = LOCATION_choice)
     image3 = models.ImageField(upload_to='images/',blank=True, null=True)
