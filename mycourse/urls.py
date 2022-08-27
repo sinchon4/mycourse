@@ -1,10 +1,11 @@
-
 from django.contrib import admin
 from django.urls import path
 from accounts import views as account
 from home import views as home
 from course import views as cs_views
-from django.urls import path, include
+from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -20,4 +21,4 @@ urlpatterns = [
     path('course_list/',cs_views.course_list,name='course_list'), #작성한 코스들이 보이는 페이지
 ]
 
-
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
