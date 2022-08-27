@@ -1,8 +1,15 @@
 from sre_parse import CATEGORIES
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
+class HashTag(models.Model):
+    hashtag = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.hashtag
+        
 class Post(models.Model):
 
     CATEGORY_CHOICES = (
@@ -67,16 +74,11 @@ class Post(models.Model):
     title3 = models.TextField()
     description3 = models.TextField()
     image3 = models.ImageField(upload_to='images/',blank=True, null=True)
-
+    hashtag = models.ManyToManyField(HashTag)
 
     def __str__(self):
         return "{} - {}".format(self.title, self.category)
 
-class HashTag(models.Model):
-    hashtag = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return self.hashtag
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)

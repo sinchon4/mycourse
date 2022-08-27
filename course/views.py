@@ -47,7 +47,8 @@ def course_list(request):
 
 def detail(request, post_pk): # 상세 페이지
     post = get_object_or_404(Post, pk=post_pk)
-    return render(request, 'detail.html', {'post': post})
+    hashtag = post.hashtag.all()
+    return render(request, 'detail.html', {'post': post, 'hashtags':hashtag})
 
 @login_required(login_url='/login/')
 def write(request):
