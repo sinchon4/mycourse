@@ -10,15 +10,18 @@
 		<link rel="stylesheet" href="{% static 'course/css/mapo.css' %}" />
 	</head>
 	<body>
-		<h1><img class="logo" src="logo.png" />모두의 루트</h1>
+		<h1><img class="logo" src="{% static 'course/img/logo.png' %}" />모두의 루트</h1>
+		<div class="region"><h2>{{ category }}</h2></div>
 		{% for post in posts %}
-		<div class="region"><h2>{{ post.location }}</h2></div>
-		<div class="sorting">{{ post.like_count }}</div>
 		<div class="posting">
-			<div><img class="like" src="heart.svg" /></div>
-			<div class="title">{{ post.title }}</div>
-			<div class="mapimg"><img src="map.png" /></div>
-			<div class="photos"></div>
+			<div class="sortingtitle">
+				<div class="sorting">{{ post.like_count }}</div>
+				<img class="like" src="{% static 'course/img/heart.svg' %}" /></div>
+			<div class="title">   {{ post.title }}</div>
+			<div class="mapimg"><img src="{% static 'course/img/map.png' %}" /></div>
+			<div class="photos"><img class="llike" src="{{ post.image1.url }}" />
+				<img class="llike" src="{{ post.image2.url }}" />
+				<img class="llike" src="{{ post.image3.url }}" /></div>
 		</div>
 		{% endfor %}
 	</body>
