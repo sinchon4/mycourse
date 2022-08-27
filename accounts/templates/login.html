@@ -13,12 +13,12 @@
 	</head>
 	<body>
 		<div class="login">
-			<form method="POST" action="{% url 'login' %}">
-			{% csrf_token %}
-				<input class="idinput" name="username" placeholder="아이디" type="text" />
-				<input class="pwinput" name="password"  placeholder="비밀번호" type="password" />
-				<button type="submit" value="로그인">로그인</button>
-			</form>
+				<input class="idinput" id="username" name="username" placeholder="아이디" type="text" />
+				<input class="pwinput" id="password" name="password" placeholder="비밀번호" type="password" />
+                <p id="login__check">{{ msg }}</p>
+                <!-- <input type="submit" value="로그인" id="signUp__first__btn"> -->
+				<button type="submit" value="로그인" id ="signUp__first__btn">로그인</button>
+		
 			<div class="goregister">
 				<p>계정이 없으신가요?<br />
 					<a class="gogo" href="{% url 'signup' %}" >회원가입하러 가기</a>
@@ -28,3 +28,38 @@
 	</body>
 </html>
 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+    $.ajaxSetup({
+      headers: { "X-CSRFToken": '{{csrf_token}}' }
+    });
+  </script>
+
+  <script type = "text/javascript">
+    let signin = document.querySelector('#signUp__first__btn');
+
+    signin.addEventListener('click', e => {               
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      console.log(username)
+      console.log(password)
+
+      let dict = {'username': username, 'password': password}
+      $.ajax({
+        url: '/login/',                          
+        type: 'POST',
+        data: JSON.stringify(dict),                       
+        success:function(data){
+          console.log(data)
+          // json.loads(data)
+          if (data['msg'] == ""){
+           window.location.replace("127.0.0.1:8000");
+          }document.getElementById('login__check').innerHTML = data['msg']
+        },
+        error: function(){
+          alert('전송실패')
+        }
+      });
+     }); 
+
+  </script>
