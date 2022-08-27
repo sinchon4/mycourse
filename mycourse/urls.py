@@ -15,7 +15,9 @@ urlpatterns = [
     path('list_lc', cs_views.LC_filter, name = "lc_filter"),
     path('list_cg', cs_views.CG_filter, name="cg_filter"),
     path('post/',cs_views.write,name='write'),
-    path('course_list/',cs_views.course_list,name='main'), #작성한 코스들이 보이는 페이지
+    path('detail/<int:post_pk>/',cs_views.detail, name='detail'),
+    path('like/<int:course_pk>/',cs_views.like,name='like' ),
+    path('course_list/',cs_views.course_list,name='course_list'), #작성한 코스들이 보이는 페이지
 ]
 
 

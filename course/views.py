@@ -26,8 +26,8 @@ def like(request, course_pk):
             course.like_users.add(request.user) #여기 실행되나?
             course.like_count+=1
             course.save()
-        return redirect('myteam_notice') # return redirect('articles:index')
-    return redirect('myteam_notice') #return redirect('accouts:login')
+        return redirect('detail',course_pk) # return redirect('articles:index')
+    return redirect('detail',course_pk) #return redirect('accouts:login')
 
 
 def CG_filter(request):
@@ -45,17 +45,19 @@ def course_list(request):
     return render(request, 'course_list.html',{'posts':posts})
 
 
+def detail(request, post_pk): # 상세 페이지
+    post = get_object_or_404(Post, pk=post_pk)
+    return render(request, 'detail.html', {'post': post})
 
-def detail(request, pk): # 상세 페이지
-    posts = Post.objects.get(id = pk)
-    return render(request, 'detail.html', {'posts': posts})
-
+@login_required(login_url='/login/')
 def write(request):
     if request.method=='POST' or request.method=='FILES': #파일을 업로드를 요청하거나 post요청을 보낸 경우
-        form =(request.POST, request.FILES) #modelform을 이용한 객체 form은 자체적으로 save method를 가짐.
+        form =PostForm(request.POST, request.FILES) #modelform을 이용한 객체 form은 자체적으로 save method를 가짐.
         #그래서 form.save()가 가능함. medelform을 이용한 객체는 .save()를 지니고 있으므로.
         if form.is_valid():
-            form.save() # form에서 입력한 값을 save.
+            unfinished = form.save(commit=False)
+            unfinished.user = request.user 
+            unfinished.save()
             return redirect('home')
     else:
         form=PostForm()

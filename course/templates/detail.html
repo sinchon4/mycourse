@@ -1,11 +1,19 @@
-<<<<<<< HEAD
 {% load static %}
-{% for posts in posts %}
 
-{{ posts.title }}
-{{ posts.category }}
+    작성 날짜 : {{post.created}}<br>
+    {% if post.user %}
+        작성자 : {{post.user}}<br>
+    {% else %}
+        작성자 : 익명 <br>
+    {% endif%}
+    <form action="{% url 'like' post.pk %}" method='POST'>
+        {% csrf_token %}
+        {% if user in post.like_users.all %} 
+          <input type="submit" value='✅ {{post.like_count}}' > <!--확인취소가 안뜨긴 하나 기능 구현엔 문제 없음.-->
+        {% else %}
+          <input type="submit" value='✅ {{post.like_count}}' > 
+        {% endif %}
+    </form>
 
-{% endfor %}
-=======
-<h1>detail</h1>
->>>>>>> c9b465ba122939336d0fae25824aa4943638d625
+
+<!--위는 페이지가 잘 작동되는지 확인하려고 임의로 적은 것 삭제해도 됩니당-->

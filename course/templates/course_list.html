@@ -1,9 +1,14 @@
 <p>작성한 코스들이 보이는 페이지</p>
 
-{% for post in posts %} 
-    <a href= "{% url 'detail' post.id %}"><h3>제목 : {{post.title}}</h3></a> 
-    <h4>작성 날짜 : {{post.date}}</h4>
-    
+{% for post in posts %} <!--프론트에서 아랫줄에 href url만 남겨주기-->
+    <a href= '{% url "detail" post.id %}'> 제목 : {{post.title}}</a> 
+    작성 날짜 : {{post.created}}<br>
+    {% if post.user %}
+        작성자 : {{post.user}}<br>
+    {% else %}
+        작성자 : 익명 <br>
+    {% endif%}
+        좋아요 수 : {{like_count}}<br>   
 {% endfor %}
 
 <br><br><br>
