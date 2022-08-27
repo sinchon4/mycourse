@@ -1,20 +1,26 @@
-<p>회원가입</p>
-
-<form action="" method="POST">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/signup.css" />
+  <title>Document</title>
+</head>
+<body>
+  <form action="" method="POST">
     {% csrf_token %}
-   
-        <h3>닉네임</h3>
-        <input type="text"   placeholder="닉네임 입력" name="last_name"  id="username">
-
-        <h3>아이디</h3>
-        <input type="text" placeholder="아이디 입력" name="username"  id="user_id">
-
-        <h3>비밀번호</h3>
-        <input type="password" placeholder="비밀번호 입력" name="password"  id="password">
-
-        <h3>비밀번호 확인</h3>
-        <input type="password"  placeholder="비밀번호 확인" name="confirm"  id="re_password" >
-
+  <div class="signupForm">
+    <input class="nameinput" name="last_name"  id="username" placeholder="닉네임" type="text" />
+    <input class="idinput" name="username"  id="user_id" placeholder="아이디" type="text" />
+    <input class="pwinput" name="password"  id="password" placeholder="비밀번호" type="password" />
+    <input class="pwCinput" name="confirm"  id="re_password" placeholder="비밀번호 확인" type="password" />
     <button type="submit">회원가입</button>
-
-</form>       
+  </form>
+    
+      <div class="goregister">
+      <p>이미 계정이 있으신가요?<br><a class="gogo" href="login.html">로그인하러 가기</a></p>
+    </div>
+  </div>
+</body>
+</html>
