@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="/css/post.css" />
+
+		<script
+			type="text/javascript"
+			src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7fgtimo2bw"
+		></script>
+	</head>
+
+	<body>
+		<div class="ttitle">샤싣</div>
+		<div class="onepost">
+			<div id="map"></div>
+			<div class="first">
+				<div class="flag1"></div>
+				<div class="title"></div>
+				<div class="image"></div>
+				<div class="desc"></div>
+			</div>
+			<div class="second">
+				<div class="flag2"></div>
+				<div class="title"></div>
+				<div class="image"></div>
+				<div class="desc"></div>
+			</div>
+			<div class="third">
+				<div class="flag3"></div>
+				<div class="title"></div>
+				<div class="image"></div>
+				<div class="desc"></div>
+			</div>
+		</div>
+		<hr />
+		<form id="addcomment">
+			<div style="margin: 5px 0">
+				<textarea id="mycomment" placeholder="댓글을 작성해주세요."></textarea>
+			</div>
+			<button type="submit" id="addbtn">등록</button>
+		</form>
+		<script>
+			var position = new naver.maps.LatLng(37.3595704, 127.105399);
+
+			var map = new naver.maps.Map('map', {
+				center: position,
+				zoom: 15,
+			});
+
+			var marker = new naver.maps.Marker({
+				position: position,
+				map: map,
+			});
+
+			naver.maps.Event.addListener(map, 'click', function (e) {
+				marker.setPosition(e.coord);
+				console.log(e.coord);
+			});
+		</script>
+	</body>
+</html>

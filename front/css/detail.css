@@ -1,0 +1,105 @@
+#map {
+	width: 80%;
+	height: 250px;
+	margin: auto;
+}
+.first {
+	width: 80%;
+	height: 200px;
+	margin: 20px auto;
+	display: flex;
+}
+.flag1 {
+	width: 120px;
+	background-image: url('../image/flag1.svg');
+	background-repeat: no-repeat;
+}
+.second {
+	width: 80%;
+	height: 200px;
+	margin: 20px auto;
+	display: flex;
+}
+.flag2 {
+	width: 120px;
+	background-image: url('../image/flag2.svg');
+	background-repeat: no-repeat;
+}
+.third {
+	width: 80%;
+	height: 200px;
+	margin: 20px auto;
+	display: flex;
+}
+.flag3 {
+	width: 120px;
+	background-image: url('../image/flag3.svg');
+	background-repeat: no-repeat;
+}
+.title {
+	width: 200px;
+	height: 100px;
+	background-color: #d9d9d9;
+	border-radius: 20px;
+	margin: 20px 20px;
+}
+.desc {
+	width: 200px;
+	height: 100px;
+	background-color: #d9d9d9;
+	border-radius: 20px;
+	margin: 20px 20px;
+	float: right;
+}
+.image {
+	width: 55%;
+	height: 150px;
+	background-color: antiquewhite;
+	margin-top: 10px;
+}
+#addcomment {
+	display: flex;
+	width: 100%;
+}
+#mycomment {
+	width: 1200px;
+	margin: 0 auto;
+	height: 100px;
+	font-size: 25px;
+	border-radius: 20px;
+	text-indent: 5px;
+	background-color: #d9d9d9;
+	border: none;
+}
+#addbtn {
+	border: none;
+	border-radius: 20px;
+	margin-left: 20px;
+	float: right;
+}
+#addcomment {
+	margin: 0 auto;
+	width: fit-content;
+}
+.ttitle {
+	width: 80%;
+	height: 50px;
+	margin: 20px auto 20px;
+	background-color: #d9d9d9;
+	display: block;
+	border: none;
+	border-radius: 15px;
+}
+input {
+	border: none;
+}
+.sub {
+	background-color: blanchedalmond;
+	width: 80%;
+	height: 100px;
+	margin: 0 auto;
+	display: block;
+	font-size: 25px;
+	border: none;
+	border-radius: 200px;
+}

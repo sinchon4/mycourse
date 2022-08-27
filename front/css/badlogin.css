@@ -1,0 +1,35 @@
+button {
+	display: block;
+	width: 370px;
+	height: 50px;
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	text-align: center;
+	color: #ffffff;
+	background: #888888;
+	border-radius: 10px;
+	border: none;
+	margin: 100px auto;
+	margin-bottom: 50px;
+	cursor: pointer;
+}
+a {
+	text-decoration: none;
+	color: var(--text-color);
+}
+.badform {
+	background: #f3f3f3;
+	border-radius: 50px;
+	width: 800px;
+	height: 496px;
+	margin: 60px auto 10px;
+	padding-top: 140px;
+}
+P {
+	width: fit-content;
+	margin: 20px auto;
+	font-weight: 700;
+	font-size: 24px;
+}

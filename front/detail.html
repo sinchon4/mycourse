@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="/css/detail.css" />
+		<script
+			type="text/javascript"
+			src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=7fgtimo2bw"
+		></script>
+	</head>
+	<body>
+		<input class="ttitle" placeholder="제목" type="text" />
+		<div id="map"></div>
+
+		<div class="first">
+			<div class="flag1"></div>
+			<input class="title" placeholder="제목" type="text" />
+			<div class="image"></div>
+			<input class="desc" placeholder="상세설명" />
+		</div>
+		<div class="second">
+			<div class="flag2"></div>
+			<input class="title" placeholder="제목" type="text" />
+			<div class="image"></div>
+			<input class="desc" placeholder="상세설명" />
+		</div>
+		<div class="third">
+			<div class="flag3"></div>
+			<input class="title" placeholder="제목" type="text" />
+			<div class="image"></div>
+			<input class="desc" placeholder="상세설명" />
+		</div>
+		<button class="sub">제출하기</button>
+		<script>
+			var position = new naver.maps.LatLng(37.3595704, 127.105399);
+
+			var map = new naver.maps.Map('map', {
+				center: position,
+				zoom: 15,
+			});
+
+			naver.maps.Event.addListener(map, 'click', function (e) {
+				var point = e.coord;
+				new naver.maps.Marker({
+					map: map,
+					position: point,
+				});
+			});
+		</script>
+	</body>
+</html>
