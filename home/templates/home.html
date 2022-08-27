@@ -1,0 +1,17 @@
+{% if user.is_authenticated %}
+
+            {% if user.last_name %}
+                <p >안녕하세요. {{ user.last_name}}님!</p>
+                {% else %}
+                <p >안녕하세요. 익명님!</p>
+                {% endif %}
+                <a href="javascript:{document.getElementById('logout').submit()}" >로그아웃</a>
+                <form id="logout" method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %} 
+                    <!--<input type="hidden" />-->
+                </form>
+            {% else %}
+                <a href="{% url 'signup' %}"> 회원가입</a>
+                <a href="{% url 'login' %}" >로그인</a>
+
+{% endif %}
