@@ -1,19 +1,13 @@
-
-{% load static %}
-
-    작성 날짜 : {{post.created}}<br>
-    {% if post.user %}
-        작성자 : {{post.user}}<br>
-    {% else %}
-        작성자 : 익명 <br>
-    {% endif%}
-    <form action="{% url 'like' post.pk %}" method='POST'>
-        {% csrf_token %}
-        {% if user in post.like_users.all %} 
-          <input type="submit" value='✅ {{post.like_count}}' > <!--확인취소가 안뜨긴 하나 기능 구현엔 문제 없음.-->
-        {% else %}
-          <input type="submit" value='✅ {{post.like_count}}' > 
-        {% endif %}
-    </form>
-
-
+{% load static %} 작성 날짜 : {{post.created}}<br />
+{% if post.user %} 작성자 : {{post.user}}<br />
+{% else %} 작성자 : 익명 <br />
+{% endif%}
+<form action="{% url 'like' post.pk %}" method="POST">
+	{% csrf_token %} {% if user in post.like_users.all %}
+	<input type="submit" value="✅ {{post.like_count}}" />
+	<!--확인취소가 안뜨긴 하나 기능 구현엔 문제 없음.-->
+	{% else %}
+	<input type="submit" value="✅ {{post.like_count}}" />
+	{% endif %}
+</form>
+<img src="//front/image/logo.png" />
