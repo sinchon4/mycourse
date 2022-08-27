@@ -14,21 +14,19 @@ from .models import Post, HashTag
 #@require_POST
 @login_required(login_url='/login/')
 def like(request, course_pk):
-    if request.user.is_authenticated: #로그인된 요저인 경우.
+    if request.user.is_authenticated: 
         course = get_object_or_404(Post, pk=course_pk)
 
-        if course.like_users.filter(pk=request.user.pk).exists(): #해당 게시글을 좋아요한 사람중에 pk가 현재 유저의 pk랑 같은 것이 존재하는지 하지 않는지를 판단한다
-           course.like_users.remove(request.user) #여기 실행되나?
+        if course.like_users.filter(pk=request.user.pk).exists(): 
+           course.like_users.remove(request.user) 
            course.like_count-=1
            course.save()
-            #notice.check_users.remove(request.user)
         else:
-            course.like_users.add(request.user) #여기 실행되나?
+            course.like_users.add(request.user)
             course.like_count+=1
             course.save()
-        return redirect('detail',course_pk) # return redirect('articles:index')
-    return redirect('detail',course_pk) #return redirect('accouts:login')
-
+        return redirect('detail',course_pk) 
+    return redirect('detail',course_pk)
 
 def CG_filter(request):
     category  = request.GET.get('category', '')
@@ -82,6 +80,7 @@ def add_comment(request, post_id):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            comment.user=request.user
             comment.save()
             return redirect('detail', post_id)
     
