@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import PostForm
 from .models import Post
 
 
@@ -11,3 +12,25 @@ def LC_filter(request):
     location  = request.GET.get('location', '')
     post = Post.objects.filter(location = location)
     return render(request, 'detail.html', {'post': post})
+
+
+
+
+def detail(request, pk): # 상세 페이지
+    posts = Post.objects.get(id = pk)
+    return render(request, 'detail.html', {'posts': posts})
+
+def write(request):
+    if request.method=='POST' or request.method=='FILES': #파일을 업로드를 요청하거나 post요청을 보낸 경우
+        form =(request.POST, request.FILES) #modelform을 이용한 객체 form은 자체적으로 save method를 가짐.
+        #그래서 form.save()가 가능함. medelform을 이용한 객체는 .save()를 지니고 있으므로.
+        if form.is_valid():
+            form.save() # form에서 입력한 값을 save.
+            return redirect('home')
+    else:
+        form=PostForm()
+    return render(request, 'write.html', {'form':form})
+    #위는 render을 통해서 두번째 인자의 페이지에 (view.py 내의 data를 보내주고 싶을 때) 마지막에 딕셔너리로 해당 data를 보내주는 거다.
+
+
+# 검색 페이지 (category, location)
