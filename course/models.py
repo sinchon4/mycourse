@@ -1,6 +1,15 @@
+from sre_parse import CATEGORIES
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
+
+class HashTag(models.Model):
+    hashtag = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.hashtag
+        
 class Post(models.Model):
 
     CATEGORY_CHOICES = (
@@ -13,6 +22,8 @@ class Post(models.Model):
         ('friend', '친구와'),
         ('healing','힐링'),
     )
+
+
 
     LOCATION_choice = (
    ('MP', '마포구'),
@@ -48,7 +59,7 @@ class Post(models.Model):
 
     user = models.ForeignKey(User,on_delete = models.CASCADE)
     created = models.DateTimeField(auto_now=True)
-    like_users = models.ManyToManyField(User,related_name='check_notices',null=True)
+    like_users = models.ManyToManyField(User,related_name='check_notices')
     like_count = models.IntegerField(default=0)
 
 
@@ -63,7 +74,22 @@ class Post(models.Model):
     title3 = models.TextField()
     description3 = models.TextField()
     image3 = models.ImageField(upload_to='images/',blank=True, null=True)
-
+    hashtag = models.ManyToManyField(HashTag)
 
     def __str__(self):
         return "{} - {}".format(self.title, self.category)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    username = models.CharField(max_length=100)
+    comment_text = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+    
+    def approve(self):
+        self.save()
+    
+    def __str__(self):
+        return self.comment_text
+
+
