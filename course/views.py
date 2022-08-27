@@ -31,7 +31,7 @@ def like(request, course_pk):
 def CG_filter(request):
     category  = request.GET.get('category', '')
     posts = Post.objects.filter(category = category)
-    return render(request, 'detail.html', {'posts': posts})
+    return render(request, 'mapo.html', {'posts': posts})
 
 def LC_filter(request):
     location  = request.GET.get('location', '')
