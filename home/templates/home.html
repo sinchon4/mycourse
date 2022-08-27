@@ -18,7 +18,7 @@
 	</head>
 
 	<body>
-		<h1><img class="logo" src="image/logo.png">모두의 루트</h1>
+		<h1><img class="logo" src={% static 'home/img/logo.png' %}>모두의 루트</h1>
 		<div>
 			<a href="{% url 'login' %}" id="log_in">로그인</a>
 			<a href="{% url 'write' %}" id="write_post">글 쓰기 </a>
@@ -31,51 +31,51 @@
 		<div id="menu">
 			<a href="list_cg?category=special">
 				<figure>
-					<img src="img/b1.png" alt="" />
+					<img src="{% static 'home/img/b1.png' %}" alt="" />
 					<figcaption>특별한 날</figcaption>
 				</figure>
 			</a>
 			<a href="list_cg?category=lover">
 				<figure>
-					<img src="img/b2.png" alt="" />
+					<img src="{% static 'home/img/b2.png' %}" alt="" />
 					<figcaption>연인과</figcaption>
 				</figure>
 			</a>
 			<a href="list_cg?category=company">
 				<figure>
-					<img src="img/b3.png" alt="" />
+					<img src="{% static 'home/img/b3.png' %}" alt="" />
 					<figcaption>회식</figcaption>
 				</figure>
 			</a>
 			<a href="list_cg?category=family">
 				<figure>
-					<img src="img/b4.png" alt="" />
+					<img src="{% static 'home/img/b4.png' %}" alt="" />
 					<figcaption>가족과</figcaption>
 				</figure>
 			</a>
 			<br />
 			<a href="list_cg?category=alone">
                 <figure>
-                    <img src="img/b5.png" alt="" />
+                    <img src="{% static 'home/img/b5.png' %}" alt="" />
 				<figcaption>혼자<figcaption>
                 </figure>
 				
 			</a>
 			<a href="list_cg?category=activity">
-                <figure><img src="img/b6.png" alt="" />
+                <figure><img src="{% static 'home/img/b6.png' %}" alt="" />
                     <figcaption>액티비티<figcaption></figure>
 				
 			</a>
 			<a href="list_cg?category=friend">
                 <figure>
-                    <img src="img/b7.png" alt="" />
+                    <img src="{% static 'home/img/b7.png' %}" alt="" />
 				<figcaption>친구와</figcaption>
                 </figure>
 				
 			</a>
 			<a href="list_cg?category=healing">
                 <figure>
-                    <img src="img/b8.png" alt="" />
+                    <img src="{% static 'home/img/b8.png' %}" alt="" />
 				<figcaption>힐링</figcaption>
                 </figure>
 				
