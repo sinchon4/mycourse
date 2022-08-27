@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="{% static 'course/css/mapo.css' %}" />
+	</head>
+	<body>
+		<h1><img class="logo" src="logo.png" />모두의 루트</h1>
+		{% for post in posts %}
+		<div class="region"><h2>{{ post.location }}</h2></div>
+		<div class="sorting">{{ post.like_count }}</div>
+		<div class="posting">
+			<div><img class="like" src="heart.svg" /></div>
+			<div class="title">{{ post.title }}</div>
+			<div class="mapimg"><img src="map.png" /></div>
+			<div class="photos"></div>
+		</div>
+		{% endfor %}
+	</body>
+</html>
