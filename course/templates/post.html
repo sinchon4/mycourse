@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -5,7 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
-		<link rel="stylesheet" href="/css/post.css" />
+		<link rel="stylesheet" href="{% static 'course/css/post.css' %}" />
 
 		<script
 			type="text/javascript"
@@ -14,28 +15,33 @@
 	</head>
 
 	<body>
-		<div class="ttitle">샤싣</div>
+		<form action="{% url 'write' %}" method="POST">
+			{% csrf_token %}
+		<div class="ttitle"><input type="text" name="title"></div>
 		<div class="onepost">
 			<div id="map"></div>
 			<div class="first">
 				<div class="flag1"></div>
-				<div class="title"></div>
-				<div class="image"></div>
-				<div class="desc"></div>
+				<div class="title"><input type="text" name="title1"></div>
+				<div class="image"><input type="file" name="image1"></div>
+				<div class="desc"><input type="text" name="description1"></div>
 			</div>
 			<div class="second">
 				<div class="flag2"></div>
-				<div class="title"></div>
+				<div class="title"><input type="text" name="title2"></div>
 				<div class="image"></div>
-				<div class="desc"></div>
+				<div class="desc"><input type="text" name="description2"></div>
 			</div>
 			<div class="third">
 				<div class="flag3"></div>
-				<div class="title"></div>
+				<div class="title"><input type="text" name="title3"></div>
 				<div class="image"></div>
-				<div class="desc"></div>
+				<div class="desc"><input type="text" name="description3"></div>
 			</div>
+			해시태그 <input type="text" name="hashtags" placeholder="해시태그">
+			<input type="submit" value="제출">
 		</div>
+		</form>
 		<hr />
 		<form id="addcomment">
 			<div style="margin: 5px 0">

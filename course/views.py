@@ -53,25 +53,26 @@ def detail(request, post_pk): # 상세 페이지
 
 @login_required(login_url='/login/')
 def write(request):
-    if request.method=='POST' or request.method=='FILES': #파일을 업로드를 요청하거나 post요청을 보낸 경우
-        form =PostForm(request.POST, request.FILES) #modelform을 이용한 객체 form은 자체적으로 save method를 가짐.
-        #그래서 form.save()가 가능함. medelform을 이용한 객체는 .save()를 지니고 있으므로.
-        if form.is_valid():
-            unfinished = form.save(commit=False)
-            unfinished.user = request.user 
-            unfinished.save()
-            #new_post = form.save() 
-            #new_post.save()
-            hashtags = request.POST['hashtags']
-            hashtag = hashtags.split(", ")
-            for tag in hashtag:
-                new_hashtag=HashTag.objects.get_or_create(hashtag = tag)
-                #new_post.hashtag.add(new_hashtag[0])
-                unfinished.hashtag.add(new_hashtag[0])
-            return redirect('home')
-    else:
-        form=PostForm()
-    return render(request, 'write.html', {'form':form})
+    if request.method=='POST': #파일을 업로드를 요청하거나 post요청을 보낸 경우
+        post = Post()
+        post.user= request.user
+        post.title = request.POST["title"]
+        post.title1 =  request.POST["title1"]
+        post.title2 =  request.POST["title2"]
+        post.title3 =  request.POST["title3"]
+        post.description1= request.POST["description1"]
+        post.description2= request.POST["description2"]
+        post.description3= request.POST["description3"]
+        post.image1 = request.POST["image1"]
+        post.image2 = request.POST["image2"]
+        post.image3 = request.POST["image3"]
+        post.save()
+        hashtags = HashTag()
+        hashtags.hashtag = request.POST['hashtags']
+        hashtags.save()
+        post.hashtag.add(hashtags)
+        return redirect('home')
+    return render(request, 'post.html')
     #위는 render을 통해서 두번째 인자의 페이지에 (view.py 내의 data를 보내주고 싶을 때) 마지막에 딕셔너리로 해당 data를 보내주는 거다.
 
 def add_comment(request, post_id):

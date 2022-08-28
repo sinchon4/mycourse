@@ -74,7 +74,7 @@ class Post(models.Model):
     title3 = models.TextField()
     description3 = models.TextField()
     image3 = models.ImageField(upload_to='images/',blank=True, null=True)
-    hashtag = models.ManyToManyField(HashTag)
+    hashtag = models.ManyToManyField(HashTag, null=True)
 
     def __str__(self):
         return "{} - {}".format(self.title, self.category)
