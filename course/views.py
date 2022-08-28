@@ -71,7 +71,8 @@ def write(request):
         hashtags.hashtag = request.POST['hashtags']
         hashtags.save()
         post.hashtag.add(hashtags)
-        return redirect('home')
+        hashtag = post.hashtag.all()
+        return render(request, 'detail.html', {'post': post, 'hashtag' :hashtag})
     return render(request, 'post.html')
     #위는 render을 통해서 두번째 인자의 페이지에 (view.py 내의 data를 보내주고 싶을 때) 마지막에 딕셔너리로 해당 data를 보내주는 거다.
 
